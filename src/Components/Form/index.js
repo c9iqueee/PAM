@@ -5,8 +5,8 @@ import styles from "./style";
 
 export default function Form()
 {
-    const [height, setHeight] = useState(null);
-    const [weight, setWeight] = useState(null);
+    const [height, setHeight] = useState('');
+    const [weight, setWeight] = useState('');
     const [mensagem, setMensagem] = useState('Preencha o peso e a altura');
     const [imc, setImc] = useState(null);
     const [buttonTitle, setButtonTitle] = useState('Calcular');
@@ -27,7 +27,7 @@ export default function Form()
         }
 
 
-        setImc(null);
+        setImc('');
         setButtonTitle('Calcular');
         setMensagem('Preencha o peso e a altura');
 

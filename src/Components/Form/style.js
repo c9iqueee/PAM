@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderTopLeftRadius:30,
         borderTopRightRadius:30,
-        border
         marginTop:30
     },
     form: {
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
         borderRadius:30,
         alignItems: "center",
         justifyContent: "center",
-        width: "90%",
+        width: "98%",
         backgroundColor: "#D62955",
         paddingBottom:14,
         paddingTop:14,
