@@ -12,25 +12,36 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
+    // <NavigationContainer>
+    //   <Stack.Navigator>
 
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-      />
+    //   <Stack.Screen
+    //     name="Login"
+    //     component={LoginScreen}
+    //   />
       
-      <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-      />
+    //   <Stack.Screen
+    //     name="Home"
+    //     component={HomeScreen}
+    //   />
          
-      <Stack.Screen
-          name="Detalhes"
-          component={DetailsScreen}
-      />
-      </Stack.Navigator>
-    </NavigationContainer>
+    //   <Stack.Screen
+    //     name="Detalhes"
+    //     component={DetailsScreen}
+    //   />
+
+    //   <Stack.Screen
+    //     name="About"
+    //     component={AboutScreen}
+    //   />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    <View>
+      <Text>
+        <Title/>
+        <Form/>
+      </Text>
+    </View>
   );
 }
 

@@ -1,4 +1,4 @@
-import { TextInput, View, Text, TouchableOpacity } from "react-native-web";
+import { TextInput, View, Text, Pressable, FlatList } from "react-native-web";
 import Resultado from "./Resultado";
 import { useState } from "react";
 import styles from "./style";
@@ -11,8 +11,12 @@ export default function Form()
     const [imc, setImc] = useState(null);
     const [buttonTitle, setButtonTitle] = useState('Calcular');
 
+    const [imcList, setImcList] = useState([]);
+
     function calcularImc(){
-        return setImc((weight/(height*height)).toFixed(2));
+        let totalImc = (weight/(height*height)).toFixed(2);
+        setImcList((arr) => [...arr, {id: new Date().getTime(), imc: totalImc}]);
+        return setImc(totalImc);
     }
 
     function validarImc()
@@ -23,22 +27,21 @@ export default function Form()
             setWeight(null);
             setMensagem('Seu IMC é igual: ');
             setButtonTitle('Calcular novamente');
-            return;
-        }
-
-
-        setImc('');
+        } else {
+            setImc('');
         setButtonTitle('Calcular');
         setMensagem('Preencha o peso e a altura');
-
+        }
     }
 
     return(
         <View style={styles.formContext}>
+            {imc == null ?
             <View style={styles.form}>
                 <Text style={styles.formLabel}>Altura:</Text>
-                <TextInput placeholder="Ex: 1.75" 
-                keyboardType="numeric"
+                <TextInput 
+                placeholder="Ex: 1.75" 
+                inputMode="numeric"
                 onChangeText={setHeight}    
                 value={height}
                 style={styles.formInput}
@@ -47,22 +50,33 @@ export default function Form()
                 <Text style={styles.formLabel}>Peso:</Text>
                 <TextInput 
                 placeholder="Ex: 60.5 (KG)" 
-                keyboardType="numeric"
+                inputMode="numeric"
                 onChangeText={setWeight}  
                 value={weight}
                 style={styles.formInput}
                 />
 
-                <TouchableOpacity
+                <Pressable
                 title={buttonTitle}
                 style={styles.formButton}
                 onPress={() => validarImc()}
                 >
                     <Text style={styles.formButtonText}>{buttonTitle}</Text>
-                </TouchableOpacity>
+                </Pressable>
             </View>
 
-            <Resultado mensagem={mensagem} imc={imc}></Resultado>
+            :
+
+            <View>
+                <Text>Exemplo</Text>
+            </View>
+
+            }   
+
+            <FlatList
+                style={styles.imcList}
+                data={imcList.reverse()}
+            />
         </View>
     );
 }
