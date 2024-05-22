@@ -28,7 +28,7 @@ export default function Form()
             setMensagem('Seu IMC é igual: ');
             setButtonTitle('Calcular novamente');
         } else {
-            setImc('');
+            setImc();
         setButtonTitle('Calcular');
         setMensagem('Preencha o peso e a altura');
         }
@@ -67,8 +67,16 @@ export default function Form()
 
             :
 
-            <View>
-                <Text>Exemplo</Text>
+            <View style={styles.showImc}>
+                <Resultado messageResultImc={mensagem} resultImc={imc}/>
+
+                <Pressable
+                title={buttonTitle}
+                style={styles.formButton}
+                onPress={() => validarImc()}
+                >
+                    <Text style={styles.formButtonText}>{buttonTitle}</Text>
+                </Pressable>
             </View>
 
             }   
@@ -76,6 +84,17 @@ export default function Form()
             <FlatList
                 style={styles.imcList}
                 data={imcList.reverse()}
+                renderItem={({item}) => {
+                    return (
+                        <Text style={styles.imcListItem}>
+                            <Text style={styles.imcListItemText}>Resultado IMC 
+                            = </Text> {item.imc}
+                        </Text>
+                    )
+                }}
+                keyExtractor={(item) => {
+                    item.id
+                }}
             />
         </View>
     );
